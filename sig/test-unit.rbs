@@ -1,0 +1,17 @@
+module Test
+  module Unit
+    class TestCase
+      include Assertions
+      extend Assertions # dirty hack
+
+      def self.test : (*(String|Symbol) targets) -> nil
+    | (String test_description) { () -> void } -> nil
+    end
+
+    module Assertions
+      def assert : (untyped object, ?String? message) -> void
+        | (?String? message) { () -> untyped } -> void
+      def assert_equal : (untyped expected, untyped actual, ?String? message) -> void
+    end
+  end
+end

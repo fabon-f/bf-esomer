@@ -1,0 +1,3 @@
+module Esomer
+  VERSION : String
+end
