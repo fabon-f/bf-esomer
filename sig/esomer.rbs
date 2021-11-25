@@ -3,7 +3,7 @@ module Esomer
 
   module AST
     class Node
-      attr_reader children : Array[untyped]
+      attr_reader children : Array[WhileLoop|MoveRelative|AddHere|PrintHere|ReadHere]
     end
     class Program < Node
     end
