@@ -12,7 +12,7 @@ module Test
       def assert : (untyped object, ?String? message) -> void
         | (?String? message) { () -> untyped } -> void
       def assert_equal : (untyped expected, untyped actual, ?String? message) -> void
-      def assert_instance_of : (Module klass, Object object, ?String? message) -> bool
+      def assert_instance_of : (Module klass, Object object, ?String? message) -> void
     end
   end
 end
