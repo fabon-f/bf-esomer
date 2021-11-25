@@ -1,3 +1,29 @@
 module Esomer
   VERSION : String
+
+  module AST
+    class Node
+      attr_reader children : Array[untyped]
+    end
+    class Program < Node
+    end
+    class WhileLoop < Node
+    end
+    class MoveRelative
+      attr_reader offset : Integer
+      def initialize: (Integer offset) -> void
+    end
+    class AddHere
+      attr_reader value : Integer
+      def initialize: (Integer value) -> void
+    end
+    class PrintHere
+    end
+    class ReadHere
+    end
+  end
+
+  class Parser
+    def parse : (String str) -> AST::Program
+  end
 end
