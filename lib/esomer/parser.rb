@@ -21,13 +21,14 @@ module Esomer
           stack.push(loop_ast)
           current_context.children.push(loop_ast)
         when "]"
-          raise "Unbalanced brackets" unless stack.pop
+          stack.pop
+          raise "Unbalanced brackets" if stack.size == 0
         else
           raise
         end
       end
 
-      raise "Unbalanced brackets" if stack.size != 0
+      raise "Unbalanced brackets" if stack.size != 1
 
       program
     end
