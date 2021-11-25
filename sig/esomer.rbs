@@ -26,4 +26,10 @@ module Esomer
   class Parser
     def parse : (String str) -> AST::Program
   end
+
+  class CodeGenerator
+    def generate_cpp : (AST::Program ast) -> String
+    def cpp_header : () -> String
+    def generate_cpp_proc : (AST::Node ast, ?Integer indent_level) -> String
+  end
 end
