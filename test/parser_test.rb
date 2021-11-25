@@ -22,4 +22,15 @@ class EsomerTest < Test::Unit::TestCase
     assert_instance_of(::Esomer::AST::AddHere, loop_ast.children[3])
     assert_equal(-1, loop_ast.children[3].value)
   end
+
+  test "parser should fail with unbalanced brackets" do
+    assert_raise_message("Unbalanced brackets") do
+      parser = ::Esomer::Parser.new
+      parser.parse("[[]")
+    end
+    assert_raise_message("Unbalanced brackets") do
+      parser = ::Esomer::Parser.new
+      parser.parse("[]]")
+    end
+  end
 end

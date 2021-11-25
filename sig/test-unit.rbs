@@ -13,6 +13,7 @@ module Test
         | (?String? message) { () -> untyped } -> void
       def assert_equal : (untyped expected, untyped actual, ?String? message) -> void
       def assert_instance_of : (Module klass, Object object, ?String? message) -> void
+      def assert_raise_message : (String|Regexp message) { () -> void } -> void
     end
   end
 end
