@@ -40,13 +40,13 @@ int main() {
         when AST::MoveRelative
           "#{indent}pos += #{node.offset};"
         when AST::AddHere
-          "#{indent}tape[pos] += #{node.value};"
+          "#{indent}tape.at(pos) += #{node.value};"
         when AST::PrintHere
-          "#{indent}printchar(tape[pos]);"
+          "#{indent}printchar(tape.at(pos));"
         when AST::ReadHere
-          "#{indent}tape[pos] = readchar();"
+          "#{indent}tape.at(pos) = readchar();"
         when AST::WhileLoop
-          "#{indent}while(tape[pos]) {\n#{generate_cpp_proc(node, indent_level + 1)}\n#{indent}}";
+          "#{indent}while(tape.at(pos)) {\n#{generate_cpp_proc(node, indent_level + 1)}\n#{indent}}";
         else
           raise "Invalid AST"
         end
