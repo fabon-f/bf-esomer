@@ -1,5 +1,27 @@
 #!/usr/bin/env ruby
 
 require "esomer"
+require "optparse"
 
-puts Esomer::VERSION
+subcmd = ARGV.shift
+
+case subcmd
+when "build"
+  outfile = nil
+
+  opt = OptionParser.new
+  opt.on("-o OUT") {|filename| outfile = filename }
+  opt.parse!(ARGV)
+
+  source_file = ARGV.shift
+
+  outfile = File.basename(source_file, ".bf") if outfile == nil && File.extname(source_file) == ".bf"
+  outfile ||= "a.out"
+
+  compiler = Esomer::Compiler.new
+  compiler.build_executable(File.read(source_file), outfile)
+else
+  STDERR.puts "Unsupported subcommand"
+  exit 1
+end
+
