@@ -32,4 +32,9 @@ module Esomer
     def cpp_header : () -> String
     def generate_cpp_proc : (AST::Node ast, ?Integer indent_level) -> String
   end
+
+  class Compiler
+    def build_cpp: (String code, String dest, ?compiler: String, ?optimize_level: Integer) -> void
+    def build_executable: (String bf_code, String dest, ?optimize_level: Integer) -> void
+  end
 end
