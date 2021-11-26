@@ -1,20 +1,20 @@
 module Esomer
-  VERSION : String
+  VERSION: String
 
   module AST
     class Node
-      attr_reader children : Array[WhileLoop|MoveRelative|AddHere|PrintHere|ReadHere]
+      attr_reader children: Array[WhileLoop|MoveRelative|AddHere|PrintHere|ReadHere]
     end
     class Program < Node
     end
     class WhileLoop < Node
     end
     class MoveRelative
-      attr_reader offset : Integer
+      attr_reader offset: Integer
       def initialize: (Integer offset) -> void
     end
     class AddHere
-      attr_reader value : Integer
+      attr_reader value: Integer
       def initialize: (Integer value) -> void
     end
     class PrintHere
@@ -24,13 +24,13 @@ module Esomer
   end
 
   class Parser
-    def parse : (String str) -> AST::Program
+    def parse: (String str) -> AST::Program
   end
 
   class CodeGenerator
-    def generate_cpp : (AST::Program ast) -> String
-    def cpp_header : () -> String
-    def generate_cpp_proc : (AST::Node ast, ?Integer indent_level) -> String
+    def generate_cpp: (AST::Program ast) -> String
+    def cpp_header: () -> String
+    def generate_cpp_proc: (AST::Node ast, ?Integer indent_level) -> String
   end
 
   class Compiler

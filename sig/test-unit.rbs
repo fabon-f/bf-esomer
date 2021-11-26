@@ -4,16 +4,16 @@ module Test
       include Assertions
       extend Assertions # dirty hack
 
-      def self.test : (*(String|Symbol) targets) -> nil
+      def self.test: (*(String|Symbol) targets) -> nil
     | (String test_description) { () -> void } -> nil
     end
 
     module Assertions
-      def assert : (untyped object, ?String? message) -> void
+      def assert: (untyped object, ?String? message) -> void
         | (?String? message) { () -> untyped } -> void
-      def assert_equal : (untyped expected, untyped actual, ?String? message) -> void
-      def assert_instance_of : (Module klass, Object object, ?String? message) -> void
-      def assert_raise_message : (String|Regexp message) { () -> void } -> void
+      def assert_equal: (untyped expected, untyped actual, ?String? message) -> void
+      def assert_instance_of: (Module klass, Object object, ?String? message) -> void
+      def assert_raise_message: (String|Regexp message) { () -> void } -> void
     end
   end
 end
