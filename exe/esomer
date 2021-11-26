@@ -17,11 +17,15 @@ when "build"
 
   source_file = ARGV.shift
 
+  if source_file.nil?
+    raise "Specify source file"
+  end
+
   outfile = File.basename(source_file, ".bf") if outfile == nil && File.extname(source_file) == ".bf"
   outfile ||= "a.out"
 
   compiler = Esomer::Compiler.new
-  # compiler.build_executable(File.read(source_file), outfile)
+  compiler.build_executable(File.read(source_file), outfile)
 else
   STDERR.puts "Unsupported subcommand"
   exit 1
