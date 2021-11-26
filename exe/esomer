@@ -8,9 +8,11 @@ subcmd = ARGV.shift
 case subcmd
 when "build"
   outfile = nil
+  optimize = 0
 
   opt = OptionParser.new
   opt.on("-o OUT") {|filename| outfile = filename }
+  opt.on("-O LEVEL") {|l| optimize = l.to_i }
   opt.parse!(ARGV)
 
   source_file = ARGV.shift
@@ -19,7 +21,7 @@ when "build"
   outfile ||= "a.out"
 
   compiler = Esomer::Compiler.new
-  compiler.build_executable(File.read(source_file), outfile)
+  # compiler.build_executable(File.read(source_file), outfile)
 else
   STDERR.puts "Unsupported subcommand"
   exit 1
