@@ -25,7 +25,7 @@ when "build"
   outfile ||= "a.out"
 
   compiler = Esomer::Compiler.new
-  compiler.build_executable(File.read(source_file), outfile)
+  compiler.build_executable(File.read(source_file), outfile, optimize_level: optimize)
 else
   STDERR.puts "Unsupported subcommand"
   exit 1

@@ -5,7 +5,7 @@ require "open3"
 module Esomer
   class Compiler
     def build_cpp(code, dest, compiler: "gcc", optimize_level: 0)
-      raise "Invalid optimization level: #{optimize_level}" if [0,1,2].include?(optimize_level)
+      raise "Invalid optimization level: #{optimize_level}" unless [0,1,2].include?(optimize_level)
       cmd = case compiler
       when "gcc"
         ["g++","-o", dest, "-x", "c++", "-O#{optimize_level}", "-std=c++11", "-"]
