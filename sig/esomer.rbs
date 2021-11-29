@@ -3,7 +3,7 @@ module Esomer
 
   module AST
     class Node
-      attr_reader children: Array[WhileLoop|MoveRelative|AddHere|PrintHere|ReadHere]
+      attr_reader children: Array[WhileLoop|MoveRelative|AddHere|AddRelative|PrintHere|PrintRelative|ReadHere|ReadRelative]
     end
     class Program < Node
     end
@@ -17,9 +17,22 @@ module Esomer
       attr_reader value: Integer
       def initialize: (Integer value) -> void
     end
+    class AddRelative
+      attr_reader value: Integer
+      attr_reader offset: Integer
+      def initialize: (Integer offset, Integer value) -> void
+    end
     class PrintHere
     end
+    class PrintRelative
+      attr_reader offset: Integer
+      def initialize: (Integer offset) -> void
+    end
     class ReadHere
+    end
+    class ReadRelative
+      attr_reader offset: Integer
+      def initialize: (Integer offset) -> void
     end
   end
 
@@ -36,5 +49,13 @@ module Esomer
   class Compiler
     def build_cpp: (String code, String dest, ?compiler: String, ?optimize_level: Integer) -> void
     def build_executable: (String bf_code, String dest, ?optimize_level: Integer) -> void
+  end
+
+  class Optimizer
+    def reduce_pointer_movement: (AST::Node ast) -> AST::Node
+
+    private
+
+    def diff_hash_to_opcodes: (Hash[Integer, Integer] hash, Integer last_pos) -> Array[untyped]
   end
 end

@@ -24,6 +24,7 @@ module Esomer
 
     def build_executable(bf_code, dest, optimize_level: 0)
       ast = Parser.new.parse(bf_code)
+      ast = Optimizer.new.reduce_pointer_movement(ast)
       cpp_code = CodeGenerator.new.generate_cpp(ast)
       build_cpp(cpp_code, dest, optimize_level: optimize_level)
     end

@@ -43,10 +43,16 @@ int main() {
           "#{indent}tape.at(pos) += #{node.value};"
         when AST::PrintHere
           "#{indent}printchar(tape.at(pos));"
+        when AST::PrintRelative
+          node.offset == 0 ? "#{indent}printchar(tape.at(pos));" : "#{indent}printchar(tape.at(pos + #{node.offset}));"
         when AST::ReadHere
           "#{indent}tape.at(pos) = readchar();"
+        when AST::ReadRelative
+          node.offset == 0 ? "#{indent}tape.at(pos) = readchar();" : "#{indent}tape.at(pos + #{node.offset}) = readchar();"
         when AST::WhileLoop
           "#{indent}while(tape.at(pos)) {\n#{generate_cpp_proc(node, indent_level + 1)}\n#{indent}}";
+        when AST::AddRelative
+          node.offset == 0 ? "#{indent}tape.at(pos) += #{node.value};" : "#{indent}tape.at(pos + #{node.offset}) += #{node.value};"
         else
           raise "Invalid AST"
         end

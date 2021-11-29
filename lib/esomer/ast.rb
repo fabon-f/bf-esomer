@@ -27,10 +27,32 @@ module Esomer
       end
     end
 
+    class AddRelative
+      attr_reader :offset, :value
+      def initialize(offset, value)
+        @offset = offset
+        @value = value
+      end
+    end
+
     class PrintHere
     end
 
+    class PrintRelative
+      attr_reader :offset
+      def initialize(offset)
+        @offset = offset
+      end
+    end
+
     class ReadHere
+    end
+
+    class ReadRelative
+      attr_reader :offset
+      def initialize(offset)
+        @offset = offset
+      end
     end
   end
 end
