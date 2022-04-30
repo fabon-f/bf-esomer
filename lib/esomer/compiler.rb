@@ -28,5 +28,11 @@ module Esomer
       cpp_code = CodeGenerator.new.generate_cpp(ast)
       build_cpp(cpp_code, dest, optimize_level: optimize_level)
     end
+
+    def disassemble(bf_code)
+      ast = Parser.new.parse(bf_code)
+      ast = Optimizer.new.reduce_pointer_movement(ast)
+      CodeGenerator.new.generate_pseudo_code(ast)
+    end
   end
 end

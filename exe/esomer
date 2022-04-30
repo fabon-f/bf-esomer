@@ -26,6 +26,9 @@ when "build"
 
   compiler = Esomer::Compiler.new
   compiler.build_executable(File.read(source_file), outfile, optimize_level: optimize)
+when "disassemble"
+  compiler = Esomer::Compiler.new
+  puts compiler.disassemble(File.read(ARGV.shift))
 else
   STDERR.puts "Unsupported subcommand"
   exit 1
