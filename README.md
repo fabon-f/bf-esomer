@@ -8,7 +8,9 @@ TODO: Write installation guide here
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+$ esomer build [options] code.bf
+```
 
 ## Contributing
 
