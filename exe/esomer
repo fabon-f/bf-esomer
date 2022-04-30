@@ -5,12 +5,30 @@ require "optparse"
 
 subcmd = ARGV.shift
 
+if %w(-h --help help).include?(subcmd)
+  puts <<-HELP
+Usage: esomer command [options] [program file]
+
+Command:
+    build                     build an executable
+    disassemble               convert a brainfuck code into human-readable code
+    help, --help, -h          show this help
+    version, --version, -v    show version
+HELP
+  exit 0
+end
+
+if %w(-v --version version).include?(subcmd)
+  puts Esomer::VERSION
+  exit 0
+end
+
 case subcmd
 when "build"
   outfile = nil
   optimize = 0
 
-  opt = OptionParser.new
+  opt = OptionParser.new("Usage: esomer build [options] file")
   opt.on("-o OUT") {|filename| outfile = filename }
   opt.on("-O LEVEL") {|l| optimize = l.to_i }
   opt.parse!(ARGV)
