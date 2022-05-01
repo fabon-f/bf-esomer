@@ -1,6 +1,6 @@
 # Esomer
 
-Yet another Brainfuck compiler inspired by esotope-bfc
+Yet another Brainfuck compiler inspired by [esotope-bfc](https://github.com/lifthrasiir/esotope-bfc)
 
 ## Installation
 
