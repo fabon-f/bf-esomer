@@ -1,7 +1,7 @@
 module Esomer
   class Parser
     def parse(str)
-      tokens = str.scan(/[+\-]+|[><]+|[.,\[\]]/)
+      tokens = str.gsub(/[^+\-><.,\[\]]+/, "").scan(/[+\-]+|[><]+|[.,\[\]]/)
       # @type var stack: Array[AST::Node]
       stack = [program = AST::Program.new]
 
