@@ -36,7 +36,8 @@ when "build"
   source_file = ARGV.shift
 
   if source_file.nil?
-    raise "Specify source file"
+    STDERR.puts "Specify source file"
+    exit 1
   end
 
   outfile = File.basename(source_file, ".bf") if outfile == nil && File.extname(source_file) == ".bf"
@@ -46,7 +47,12 @@ when "build"
   compiler.build_executable(File.read(source_file), outfile, optimize_level: optimize)
 when "disassemble"
   compiler = Esomer::Compiler.new
-  puts compiler.disassemble(File.read(ARGV.shift))
+  filename = ARGV.shift
+  if filename.nil?
+    STDERR.puts "Specify source file"
+    exit 1
+  end
+  puts compiler.disassemble(File.read(filename))
 else
   STDERR.puts "Unsupported subcommand"
   exit 1
